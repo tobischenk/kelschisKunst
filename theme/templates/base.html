@@ -1,0 +1,21 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <title>Django Tailwind</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		{% tailwind_css %}
+	</head>
+
+	{% block base %}
+
+        <body class="bg-black h-screen w-screen">
+            <main class="h-full w-full">
+                {% block content %}
+                {% endblock %}
+            </main>
+        </body>
+    {% endblock base %}
+</html>
