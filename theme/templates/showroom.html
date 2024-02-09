@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="justify-center h-full w-full snap-y snap-mandatory overflow-scroll">
+        {% for showroom_image in showroom_images %}
+            <div class="snap-start w-full space-y-4 py-8 h-full flex flex-col items-center justify-between">
+                <div class="flex flex-row w-4/5 h-4/5 items-start justify-start">
+                    <img class="object-contain h-full"
+                         src="{{ showroom_image.image.file.url }}"
+                         alt="{{ showroom_image.image.title }}"
+                    />
+                </div>
+                <div class="flex flex-col space-y-2 w-4/5">
+                    <div class="flex flex-row space-x-8 w-full items-start justify-start">
+                        <div class="flex flex-col h-full items-start justify-start space-y-2">
+                            <span class="font-semibold font-mono text-white text-lg">{{ showroom_image.image.title }}</span>
+                            {% if showroom_image.image.available_to_buy %}
+                                <span class="font-normal font-mono text-gray-300 text-sm">Price: {{ showroom_image.image.price }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="flex flex-col h-full items-start justify-start space-y-2">
+                    <span class="font-normal font-mono text-white text-lg">
+                        {{ showroom_image.image.started_at }} - {{ showroom_image.image.finished_at }}
+                    </span>
+                            <span class="font-normal font-mono text-gray-200 text-sm">
+                        Width x Height: {{ showroom_image.image.width }} x {{ showroom_image.image.height }}
+                    </span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col h-full flex-grow-0 items-start justify-start space-y-2 break-words">
+                <span class="font-normal font-mono text-gray-200 text-sm">
+                    {{ showroom_image.image.description }}
+                </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

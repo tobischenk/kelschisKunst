@@ -7,7 +7,7 @@ from showroom.models import ShowroomImage
 
 # Create your views here.
 class ShowroomIndexView(TemplateView):
-    template_name = "index.html"
+    template_name = "showroom.html"
 
     def get_context_data(self, **kwargs):
         context = super(ShowroomIndexView, self).get_context_data(**kwargs)
