@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 
 from core.models import BaseImageBuyer
+from core.util import shuffle_queryset
 from showroom.models import ShowroomImage
 
 
@@ -10,10 +11,9 @@ class ShowroomIndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ShowroomIndexView, self).get_context_data(**kwargs)
-        showroom_images = ShowroomImage.objects.filter(public=True)
-        print(showroom_images[1].image)
-        print(BaseImageBuyer.objects.all())
-        context["showroom_images"] = ShowroomImage.objects.filter(public=True)
+        context["showroom_images"] = shuffle_queryset(
+            ShowroomImage.objects.filter(public=True)
+        )
 
         return context
 
